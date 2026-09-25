@@ -1,0 +1,36 @@
+---
+interface Props {
+  profileImage: string;
+}
+const { profileImage } = Astro.props;
+---
+<footer class="bg-espresso px-5 pb-8 pt-16 text-cream lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid gap-10 border-b border-white/15 pb-12 md:grid-cols-[1.3fr_.7fr_.7fr]">
+      <div>
+        <div class="flex items-center gap-3">
+          <img src={profileImage} alt="Snooze Café logo" class="h-12 w-12 rounded-full border border-white/30 object-cover" />
+          <span class="font-display text-3xl font-bold">Snooze</span>
+        </div>
+        <p class="mt-5 max-w-sm text-cream/65">Coffee with character, for the moments you want to remember.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.18em] text-sand">Explore</p>
+        <ul class="mt-4 space-y-2 text-cream/70">
+          <li><a class="transition hover:text-sand" href="#story">Our story</a></li>
+          <li><a class="transition hover:text-sand" href="#gallery">The menu mood</a></li>
+          <li><a class="transition hover:text-sand" href="#visit">Visit us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[.18em] text-sand">Stay close</p>
+        <a href="https://www.instagram.com/snooze.iq/" target="_blank" rel="noreferrer" class="mt-4 inline-flex items-center gap-2 text-cream/70 transition hover:text-sand">@snooze.iq <span>↗</span></a>
+        <a href="tel:07734900999" class="mt-2 block text-cream/70 transition hover:text-sand">0773 490 0999</a>
+      </div>
+    </div>
+    <div class="flex flex-col justify-between gap-3 pt-7 text-xs text-cream/45 sm:flex-row">
+      <p>© {new Date().getFullYear()} Snooze Café. All rights reserved.</p>
+      <p>Made for slow moments in Basrah.</p>
+    </div>
+  </div>
+</footer>

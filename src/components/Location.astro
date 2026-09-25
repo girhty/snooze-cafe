@@ -1,0 +1,41 @@
+---
+interface Props {
+  profileImage: string;
+}
+const { profileImage } = Astro.props;
+---
+<section id="visit" class="relative overflow-hidden bg-sand/45 px-5 py-24 lg:px-8 lg:py-32">
+  <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+    <div class="reveal">
+      <p class="text-sm font-bold uppercase tracking-[.2em] text-caramel">Find your favorite table</p>
+      <h2 class="mt-3 font-display text-5xl font-bold leading-none sm:text-6xl">Come stay<br /><em>a little while.</em></h2>
+      <p class="mt-6 max-w-md text-lg leading-relaxed text-roast/75">We are ready with a warm welcome, a perfect pour, and something sweet waiting at the counter.</p>
+      <a data-magnetic href="https://www.google.com/maps/search/?api=1&query=Snooze+Caf%C3%A9+Basrah" target="_blank" rel="noreferrer" class="mt-8 inline-flex rounded-full bg-espresso px-7 py-4 font-bold text-cream transition hover:bg-roast">Get directions <span class="ml-2">↗</span></a>
+    </div>
+
+    <div class="reveal reveal-delay-1 rounded-[2rem] bg-cream p-5 shadow-soft sm:p-8">
+      <div class="mb-7 flex items-center justify-between border-b border-sand pb-6">
+        <div class="flex items-center gap-3">
+          <img src={profileImage} alt="" class="h-12 w-12 rounded-full object-cover" />
+          <div><p class="font-display text-xl font-bold">Snooze Café</p><p class="text-sm text-roast/60">Basrah, Iraq</p></div>
+        </div>
+        <span class="inline-flex items-center gap-2 rounded-full bg-[#e4f0df] px-3 py-1.5 text-xs font-bold text-[#496744]"><span class="h-2 w-2 rounded-full bg-sage"></span> Open now</span>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[.16em] text-caramel">Location</p>
+          <p class="mt-2 font-medium leading-relaxed text-roast">Basrah, Basra Governorate<br />مناوي باشا – قرب الجسر الإيطالي</p>
+        </div>
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[.16em] text-caramel">Call & order</p>
+          <a href="tel:07734900999" class="mt-2 block font-medium text-roast transition hover:text-caramel" dir="ltr">0773 490 0999</a>
+          <a href="tel:07834900999" class="mt-1 block font-medium text-roast transition hover:text-caramel" dir="ltr">0783 490 0999</a>
+        </div>
+        <div class="sm:col-span-2 rounded-2xl bg-sand/45 p-4">
+          <p class="text-xs font-bold uppercase tracking-[.16em] text-caramel">Your way to Snooze</p>
+          <p class="mt-1 text-sm text-roast/75">Near the Italian Bridge · Al Ronoq Cars Exhibition branch</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

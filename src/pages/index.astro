@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Gallery from '../components/Gallery.astro';
+import Location from '../components/Location.astro';
+import Footer from '../components/Footer.astro';
+
+const profileImage = 'https://scontent-ams2-1.cdninstagram.com/v/t51.2885-19/339135534_1269621740315344_8926129501540393255_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=109&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4zMjAuQzMifQ%3D%3D&_nc_ohc=uaBhRHprQyoQ7kNvwH1dUrI&_nc_oc=Ado2cAlnqsEuPRYhJecQ-wEZ1Wl5PaT0eJUZHqUiJja6GAEK1FAFqg3WVuAahib_ds4&_nc_zt=24&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_ss=72a8c&oh=00_AQKARx2JgwVfIzNpS1hRhN-K7CDptNrKXIUtPay8tAP6jQ&oe=6ABCAB12';
+
+const heroImage = 'https://lh3.googleusercontent.com/grass-cs/ACvplmOUH7KnjCgUoyGwhKWYpzz4agUKiOSTF7OoQFsxf3C0zgJeMcw976B-jZ1kmj6mkmvnihzuOkNWReVgBtiFICDA7tpg0orgyXhNj-QTJZB4dJ4mFNpNVuDM92313viigBjnbrNS32ZOPL7k=w1080-h720-k-no';
+
+const posts = [
+  { image: 'https://scontent-ams2-1.cdninstagram.com/v/t39.30808-6/653702585_848557884870844_8369320596612643259_n.png?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&_nc_ohc=_oMaXJ14VgkQ7kNvwG6TM_7&_nc_oc=AdqfRQcNEPqpEOmohSThKnA15QhWPNGBhermHIBwlcsizhF97lOPx8waMjZH5IbqQ10&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com', caption: 'ليس مجرد حلى… إنها جرعة سعادة بعد يوم طويل 🧇🍨🤎', type: 'Waffle & Lotus' },
+  { image: 'https://scontent-ams2-1.cdninstagram.com/v/t39.30808-6/615824261_803137379412895_6388669178251718367_n.png?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&_nc_ohc=k-jKaC0MZU8Q7kNvwFfkewN&_nc_oc=AdrxlBXJ66mc5TV3AxLHwB-nc7lDln75GsXKx23ABWCjDVerQZ2LVrkKU6UOpduH9m0&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com', caption: 'من أول رشفة… تعرف الفرق. قهوة Snooze Cafe.', type: 'Signature Coffee' },
+  { image: 'https://scontent-ams2-1.cdninstagram.com/v/t51.82787-15/590422764_17975859125957395_2179842965762226038_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&_nc_ohc=6j7ACemeGyQQ7kNvwERLLHa&_nc_oc=AdqCo2VIyohKKFmdbaX3dcdrdeEk7yfKo5jplh9XqsEqmKOcSw9Oe4Ave7GGvgNYSzE&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com', caption: 'من أول لقمة بتعرف إنها مصنوعة بحُب… تشيز كيك اليوم.', type: 'Fresh Cheesecake' },
+  { image: 'https://scontent-ams2-1.cdninstagram.com/v/t51.75761-15/504885414_17955948437957395_9085367379202710355_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&_nc_ohc=7K6QjqyDPYUQ7kNvwEcY2WV&_nc_oc=Adpoe-a75Czt4YD0tYE9yNgM5PA7cxcRPjhJXbZflWWaTjgqHGn1yjKvNVTRBrusmH4&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com', caption: 'حلها بكوب آيس لاتيه من Snooze Café! 🧊☕', type: 'Iced Latte' },
+  { image: 'https://scontent-ams2-1.cdninstagram.com/v/t51.75761-15/504181277_17955614273957395_1073663907514027223_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&_nc_ohc=7sRHhuHem1sQ7kNvwGRDgta&_nc_oc=Adqd_pFQnL4f6sgojw6ADryEOpa8K90NOXs6rhrVik08gD7G9XWzDKH_TlNp7PtouDM&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com', caption: 'ميلك شيك أوريو — نكهة غنيّة لا تُنسى.', type: 'Oreo Milkshake' },
+  { image: 'https://scontent-ams2-1.cdninstagram.com/v/t51.75761-15/504484416_17955613253957395_795540366851940369_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&_nc_ohc=MlkZEkSOj-AQ7kNvwHxhDPH&_nc_oc=AdoVaPxH-f6gI0qUAe69_1FMYP3l6d6H-BV1wTNjlaNaGVms6AzqiEUh_1wvmsARAgQ&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com', caption: 'قطرات تصنع الفرق. V60 من سنوز كافيه.', type: 'Slow Brew V60' }
+];
+---
+<Layout title="Snooze Café | Coffee with Character" description="Snooze Café, Basrah. Love at first sip — specialty coffee, dreamy desserts, and warm moments.">
+  <header class="absolute inset-x-0 top-0 z-30">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8" aria-label="Main navigation">
+      <a href="#top" class="flex items-center gap-3 text-cream" aria-label="Snooze Café home">
+        <img src={profileImage} alt="Snooze Café logo" class="h-11 w-11 rounded-full border-2 border-white/70 object-cover shadow-lg" />
+        <span class="font-display text-2xl font-bold tracking-tight">Snooze</span>
+      </a>
+      <div class="hidden items-center gap-7 text-sm font-medium text-cream/90 md:flex">
+        <a href="#story" class="transition hover:text-sand">Our story</a>
+        <a href="#gallery" class="transition hover:text-sand">The menu mood</a>
+        <a href="#visit" class="transition hover:text-sand">Visit us</a>
+      </div>
+      <a href="tel:07734900999" class="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white hover:text-espresso">
+        Call us
+      </a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <Hero image={heroImage} profileImage={profileImage} />
+
+    <section class="overflow-hidden border-y border-sand/60 bg-sand/45 py-4" aria-label="Snooze Café highlights">
+      <div class="flex min-w-max animate-marquee gap-9 whitespace-nowrap font-display text-xl font-bold text-roast/85">
+        <span>COFFEE WITH CHARACTER</span><span class="text-caramel">✦</span>
+        <span>LOVE AT FIRST SIP</span><span class="text-caramel">✦</span>
+        <span>MADE FOR SLOW MOMENTS</span><span class="text-caramel">✦</span>
+        <span>COFFEE WITH CHARACTER</span><span class="text-caramel">✦</span>
+        <span>LOVE AT FIRST SIP</span><span class="text-caramel">✦</span>
+        <span>MADE FOR SLOW MOMENTS</span><span class="text-caramel">✦</span>
+      </div>
+    </section>
+
+    <section id="story" class="relative mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+      <div class="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr]">
+        <div class="reveal">
+          <p class="mb-4 text-sm font-bold uppercase tracking-[.2em] text-caramel">A Basrah pause, beautifully made</p>
+          <h2 class="font-display text-5xl font-bold leading-[.95] text-espresso sm:text-6xl">A little softness<br /><em class="text-caramel">in every day.</em></h2>
+          <p class="mt-7 max-w-lg text-lg leading-relaxed text-roast/75">
+            From meticulously brewed V60s to indulgent Oreo creations, Snooze is your invitation to slow down. A café where every cup arrives with warmth, detail, and a little bit of magic.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <div class="rounded-2xl bg-white px-5 py-4 shadow-soft">
+              <p class="font-display text-3xl font-bold text-caramel">4.9<span class="text-xl">/5</span></p>
+              <p class="text-xs font-semibold uppercase tracking-wider text-roast/60">Google rating</p>
+            </div>
+            <div class="rounded-2xl bg-white px-5 py-4 shadow-soft">
+              <p class="font-display text-3xl font-bold text-caramel">1.9K</p>
+              <p class="text-xs font-semibold uppercase tracking-wider text-roast/60">Coffee friends</p>
+            </div>
+            <div class="rounded-2xl bg-white px-5 py-4 shadow-soft">
+              <p class="font-display text-3xl font-bold text-caramel">Open</p>
+              <p class="text-xs font-semibold uppercase tracking-wider text-roast/60">For good moods</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1 relative">
+          <div class="absolute -right-4 -top-5 h-32 w-32 rounded-full bg-caramel/20 blur-2xl"></div>
+          <div class="overflow-hidden rounded-[2.5rem] bg-roast shadow-soft">
+            <img src={posts[1].image} alt="Snooze Café signature coffee" class="h-[490px] w-full object-cover transition duration-700 hover:scale-105" loading="lazy" />
+          </div>
+          <div class="absolute -bottom-7 -left-3 max-w-[240px] rounded-2xl border border-white/60 bg-cream/85 p-5 shadow-soft backdrop-blur-md sm:left-7">
+            <p class="font-display text-2xl font-bold text-espresso">“الحب من أول رشفة”</p>
+            <p class="mt-1 text-sm text-roast/70">Love at the very first sip.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Gallery posts={posts} />
+
+    <section class="relative overflow-hidden bg-espresso px-5 py-24 text-cream lg:px-8 lg:py-32">
+      <div class="absolute -left-32 top-0 h-80 w-80 rounded-full bg-caramel/20 blur-[100px]"></div>
+      <div class="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+        <div class="reveal">
+          <p class="text-sm font-bold uppercase tracking-[.2em] text-sand">Little notes, big love</p>
+          <h2 class="mt-4 font-display text-5xl font-bold leading-tight sm:text-6xl">Loved by the<br /><em class="text-sand">slow sippers.</em></h2>
+        </div>
+        <div class="reveal reveal-delay-1 grid gap-4 sm:grid-cols-2">
+          <blockquote class="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-sm">
+            <div class="mb-5 text-caramel" aria-label="5 stars">★★★★★</div>
+            <p class="font-display text-xl leading-relaxed">“A new favorite place to enjoy coffee and take a real pause.”</p>
+            <footer class="mt-6 text-sm font-semibold text-sand">Google guest · Basrah</footer>
+          </blockquote>
+          <blockquote class="rounded-3xl border border-white/10 bg-white/10 p-6 backdrop-blur-sm sm:translate-y-8">
+            <div class="mb-5 text-caramel" aria-label="5 stars">★★★★★</div>
+            <p class="font-display text-xl leading-relaxed">“Sweet, welcoming, and full of character in every detail.”</p>
+            <footer class="mt-6 text-sm font-semibold text-sand">Snooze community</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <Location profileImage={profileImage} />
+  </main>
+
+  <Footer profileImage={profileImage} />
+</Layout>
